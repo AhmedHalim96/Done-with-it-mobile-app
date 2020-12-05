@@ -11,24 +11,55 @@ import * as Yup from "yup";
 import Screen from "../components/Screen";
 
 const valdiationSchema = Yup.object().shape({
-	title: Yup.string().required(),
-	price: Yup.string().required(),
-	category: Yup.string().required(),
-	description: Yup.string().required(),
+	title: Yup.string().required().min(1).label("Title"),
+	price: Yup.string().required().min(1).max(1000).label("Price"),
+	category: Yup.object().required().nullable().label("Category"),
+	description: Yup.string().label("Description"),
 });
+
+const cats = [
+	{
+		label: "Furniture",
+		value: 1,
+	},
+	{
+		label: "Clothes",
+		value: 2,
+	},
+	{
+		label: "Electronics",
+		value: 3,
+	},
+];
 
 const ListingEditScreen = () => {
 	return (
 		<Screen style={styles.container}>
 			<AppForm
-				initialValues={{ title: "", price: "", category: "", description: "" }}
+				initialValues={{
+					title: "",
+					price: "",
+					category: null,
+					description: "",
+				}}
 				onSubmit={values => console.log(values)}
 				valdiationSchema={valdiationSchema}
 			>
-				<AppFormField name="title" placeholder="Title" />
-				<AppFormField name="price" placeholder="Price" />
-				<AppFormPicker name="category" />
-				<AppFormField name="description" placeholder="Description" />
+				<AppFormField name="title" placeholder="Title" maxLength={255} />
+				<AppFormField
+					name="price"
+					placeholder="Price"
+					keyboardType="numeric"
+					maxLength={8}
+				/>
+				<AppFormPicker name="category" placeholder="Category" items={cats} />
+				<AppFormField
+					name="description"
+					placeholder="Description"
+					numberOfLines={3}
+					multiline
+					maxLength={255}
+				/>
 				<SubmitButton title="Post" />
 			</AppForm>
 		</Screen>

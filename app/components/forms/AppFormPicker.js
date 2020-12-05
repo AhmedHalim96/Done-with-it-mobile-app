@@ -5,30 +5,16 @@ import { View, Text } from "react-native";
 import ErrorMssage from "./ErrorMssage";
 import AppPicker from "../AppPicker";
 
-const cats = [
-	{
-		label: "Furniture",
-		value: 1,
-	},
-	{
-		label: "Clothes",
-		value: 2,
-	},
-	{
-		label: "Electronics",
-		value: 3,
-	},
-];
-
-const AppFormPicker = ({ name }) => {
-	const { setFieldTouched, handleChange, errors, touched } = useFormikContext();
+const AppFormPicker = ({ name, items, placeholder }) => {
+	const { values, errors, touched, setFieldValue } = useFormikContext();
 
 	return (
 		<>
 			<AppPicker
-				placeholder="Category"
-				items={cats}
-				onSelect={item => console.log(object)}
+				placeholder={placeholder}
+				items={items}
+				onSelect={item => setFieldValue(name, item)}
+				selected={values[name]}
 			/>
 			<ErrorMssage error={errors[name]} visible={touched[name]} />
 		</>
