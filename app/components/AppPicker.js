@@ -13,7 +13,7 @@ import appStyles from "../config/appStyles";
 import colors from "../config/colors";
 import AppPickerItem from "./AppPickerItem";
 import AppText from "./AppText";
-import ListItemSeperator from "./ListItemSeperator";
+import ListItemSeperator from "./lists/ListItemSeperator";
 import Screen from "./Screen";
 
 const AppPicker = ({ icon, items, placeholder, selected, onSelect }) => {

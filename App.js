@@ -28,7 +28,7 @@ import MessagesScreen from "./app/screens/MessagesScreen";
 import Screen from "./app/components/Screen";
 import Icon from "./app/components/Icon";
 import colors from "./app/config/colors";
-import ListItem from "./app/components/ListItem";
+import ListItem from "./app/components/lists/ListItem";
 import AccountScreens from "./app/screens/AccountScreens";
 import LisitngsScreen from "./app/screens/LisitngsScreen";
 import AppTextInput from "./app/components/AppTextInput";
