@@ -7,8 +7,9 @@ import {
 	TouchableHighlight,
 	TouchableOpacity,
 } from "react-native";
+import colors from "../config/colors";
 
-const Btn = ({ title, color, onPress }) => {
+const Btn = ({ title, color = colors.primary, onPress }) => {
 	return (
 		<TouchableOpacity
 			onPress={onPress}
@@ -29,7 +30,7 @@ const styles = StyleSheet.create({
 		marginVertical: 10,
 	},
 	btnTxt: {
-		color: "white",
+		color: colors.white,
 		flex: 1,
 		textAlign: "center",
 		textAlignVertical: "center",
