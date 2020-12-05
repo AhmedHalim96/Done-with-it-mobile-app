@@ -28,10 +28,10 @@ const styles = StyleSheet.create({
 	img: {
 		width: "100%",
 		height: 220,
-		resizeMode: "contain",
+		resizeMode: "cover",
 	},
 	cardText: {
-		padding: 20,
+		padding: 10,
 	},
 	title: { marginBottom: 10 },
 	subtitle: {
