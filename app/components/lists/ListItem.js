@@ -1,3 +1,4 @@
+import { MaterialCommunityIcons } from "@expo/vector-icons";
 import React from "react";
 import {
 	Image,
@@ -27,8 +28,17 @@ const ListItem = ({
 					{image && <Image style={styles.image} source={image} />}
 					<View style={styles.detailsContainer}>
 						<AppText style={styles.title}>{title}</AppText>
-						{subtitle && <AppText style={styles.subtitle}>{subtitle}</AppText>}
+						{subtitle && (
+							<AppText style={styles.subtitle}>
+								{subtitle}
+							</AppText>
+						)}
 					</View>
+					<MaterialCommunityIcons
+						color={colors.medium}
+						name="chevron-right"
+						size={25}
+					/>
 				</View>
 			</TouchableHighlight>
 		</Swipeable>
@@ -54,6 +64,8 @@ const styles = StyleSheet.create({
 	detailsContainer: {
 		marginLeft: 10,
 		justifyContent: "center",
+
+		flex: 1,
 	},
 	title: {
 		fontSize: 16,
