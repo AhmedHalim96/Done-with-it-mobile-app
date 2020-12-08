@@ -13,22 +13,22 @@ import ListItemDeleteAction from "../components/lists/ListItemDeleteAction";
 import ListItemSeperator from "../components/lists/ListItemSeperator";
 import Screen from "../components/Screen";
 
-const MessagesScreen = () => {
-	const intialMessages = [
-		{
-			id: 1,
-			title: "T1",
-			descriprtion: "D1",
-			image: require("../assets/jacket.jpg"),
-		},
-		{
-			id: 2,
-			title: "T2",
-			descriprtion: "D2",
-			image: require("../assets/jacket.jpg"),
-		},
-	];
+const intialMessages = [
+	{
+		id: 1,
+		title: "T1",
+		descriprtion: "D1",
+		image: require("../assets/jacket.jpg"),
+	},
+	{
+		id: 2,
+		title: "T2",
+		descriprtion: "D2",
+		image: require("../assets/jacket.jpg"),
+	},
+];
 
+const MessagesScreen = () => {
 	const [messages, setMessages] = useState(intialMessages);
 	const [refreshing, setrefreshing] = useState(false);
 
