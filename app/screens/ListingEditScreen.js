@@ -9,6 +9,7 @@ import {
 
 import * as Yup from "yup";
 import Screen from "../components/Screen";
+import CategoryPickerItem from "../components/CategoryPickerItem";
 
 const valdiationSchema = Yup.object().shape({
 	title: Yup.string().required().min(1).label("Title"),
@@ -21,14 +22,20 @@ const cats = [
 	{
 		label: "Furniture",
 		value: 1,
+		backgroundColor: "red",
+		icon: "apps",
 	},
 	{
 		label: "Clothes",
 		value: 2,
+		backgroundColor: "green",
+		icon: "email",
 	},
 	{
 		label: "Electronics",
 		value: 3,
+		backgroundColor: "blue",
+		icon: "user",
 	},
 ];
 
@@ -51,8 +58,16 @@ const ListingEditScreen = () => {
 					placeholder="Price"
 					keyboardType="numeric"
 					maxLength={8}
+					width={120}
 				/>
-				<AppFormPicker name="category" placeholder="Category" items={cats} />
+				<AppFormPicker
+					name="category"
+					placeholder="Category"
+					items={cats}
+					width={"50%"}
+					numberOfColumns={3}
+					PickerItemComponent={CategoryPickerItem}
+				/>
 				<AppFormField
 					name="description"
 					placeholder="Description"

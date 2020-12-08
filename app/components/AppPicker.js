@@ -13,15 +13,25 @@ import appStyles from "../config/appStyles";
 import colors from "../config/colors";
 import AppPickerItem from "./AppPickerItem";
 import AppText from "./AppText";
+import Btn from "./Btn";
 import ListItemSeperator from "./lists/ListItemSeperator";
 import Screen from "./Screen";
 
-const AppPicker = ({ icon, items, placeholder, selected, onSelect }) => {
+const AppPicker = ({
+	icon,
+	items,
+	placeholder,
+	selected,
+	numberOfColumns = 1,
+	PickerItemComponent = AppPickerItem,
+	onSelect,
+	width = "100%",
+}) => {
 	const [showModal, setShowModal] = useState(false);
 	return (
 		<>
 			<TouchableWithoutFeedback onPress={() => setShowModal(true)}>
-				<View style={styles.container}>
+				<View style={[styles.container, { width }]}>
 					{icon && (
 						<MaterialCommunityIcons
 							name={icon}
@@ -48,12 +58,14 @@ const AppPicker = ({ icon, items, placeholder, selected, onSelect }) => {
 
 			<Modal visible={showModal} animationType={"slide"}>
 				<Screen>
+					<Btn onPress={() => setShowModal(!showModal)} title="close" />
 					<FlatList
 						data={items}
-						keyExtractor={item => item.value.toString()}
+						numColumns={numberOfColumns}
+						keyExtractor={item => item.value.toString() + ""}
 						renderItem={({ item }) => (
-							<AppPickerItem
-								label={item.label}
+							<PickerItemComponent
+								item={item}
 								onPress={() => {
 									onSelect(item);
 									setShowModal(false);
@@ -75,8 +87,6 @@ const styles = StyleSheet.create({
 		backgroundColor: colors.light,
 		borderRadius: 25,
 		flexDirection: "row",
-		width: "96%",
-		alignSelf: "center",
 		alignItems: "baseline",
 		padding: 15,
 		marginVertical: 10,

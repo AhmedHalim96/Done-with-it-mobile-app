@@ -5,7 +5,14 @@ import { View, Text } from "react-native";
 import ErrorMssage from "./ErrorMssage";
 import AppPicker from "../AppPicker";
 
-const AppFormPicker = ({ name, items, placeholder }) => {
+const AppFormPicker = ({
+	name,
+	items,
+	placeholder,
+	numberOfColumns,
+	width,
+	PickerItemComponent,
+}) => {
 	const { values, errors, touched, setFieldValue } = useFormikContext();
 
 	return (
@@ -15,6 +22,9 @@ const AppFormPicker = ({ name, items, placeholder }) => {
 				items={items}
 				onSelect={item => setFieldValue(name, item)}
 				selected={values[name]}
+				numberOfColumns={numberOfColumns}
+				width={width}
+				PickerItemComponent={PickerItemComponent}
 			/>
 			<ErrorMssage error={errors[name]} visible={touched[name]} />
 		</>
