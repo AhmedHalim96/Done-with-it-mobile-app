@@ -1,5 +1,5 @@
 // import { StatusBar } from "expo-status-bar";
-import React, { useState } from "react";
+import React, { useEffect, useState } from "react";
 import {
 	StyleSheet,
 	Text,
@@ -11,12 +11,16 @@ import {
 	Button,
 	TextInput,
 	Switch,
+	Image,
+	ViewBase,
 } from "react-native";
 import {
 	useDimensions,
 	useDeviceOrientation,
 } from "@react-native-community/hooks";
 import { MaterialCommunityIcons } from "@expo/vector-icons";
+import * as ImagePicker from "expo-image-picker";
+import * as Permissions from "expo-permissions";
 
 import ViewImageScreen from "./app/screens/ViewImageScreen";
 import WelcomeScreen from "./app/screens/WelcomeScreen";
@@ -36,25 +40,10 @@ import AppPicker from "./app/components/AppPicker";
 import LoginScreen from "./app/screens/LoginScreen";
 import SignupScreen from "./app/screens/RegisterScreen";
 import ListingEditScreen from "./app/screens/ListingEditScreen";
-
-const cats = [
-	{
-		label: "Furniture",
-		value: 1,
-	},
-	{
-		label: "Clothes",
-		value: 2,
-	},
-	{
-		label: "Electronics",
-		value: 3,
-	},
-];
+import { TouchableWithoutFeedback } from "react-native-gesture-handler";
+import ImageInput from "./app/components/ImageInput";
+import ImageInputList from "./app/components/ImageInputList";
 
 export default function App() {
-	const [isNew, setIsNew] = useState(false);
-	const [categorty, setCategorty] = useState(cats[0]);
-
 	return <ListingEditScreen />;
 }

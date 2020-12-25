@@ -58,7 +58,7 @@ const AppPicker = ({
 
 			<Modal visible={showModal} animationType={"slide"}>
 				<Screen>
-					<Btn onPress={() => setShowModal(!showModal)} title="close" />
+					{/* <Btn onPress={() => setShowModal(!showModal)} title="close" /> */}
 					<FlatList
 						data={items}
 						numColumns={numberOfColumns}
