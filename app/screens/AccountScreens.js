@@ -14,6 +14,7 @@ const menuItems = [
 			name: "format-list-bulleted",
 			backgroundColor: colors.primary,
 		},
+		targetScreen: "",
 	},
 	{
 		title: "My Messages",
@@ -21,10 +22,11 @@ const menuItems = [
 			name: "email",
 			backgroundColor: colors.secondary,
 		},
+		targetScreen: "Messages",
 	},
 ];
 
-const AccountScreens = () => {
+const AccountScreens = ({ navigation }) => {
 	return (
 		<Screen style={styles.screen}>
 			<View style={styles.container}>
@@ -48,6 +50,7 @@ const AccountScreens = () => {
 									backgroundColor={item.icon.backgroundColor}
 								/>
 							}
+							onPress={() => navigation.navigate(item.targetScreen)}
 						/>
 					)}
 					ItemSeparatorComponent={ListItemSeperator}
