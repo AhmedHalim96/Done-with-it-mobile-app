@@ -3,7 +3,7 @@ import { View, Text, Image, StyleSheet, ImageBackground } from "react-native";
 import Btn from "../components/Btn";
 import colors from "../config/colors";
 
-export default function WelcomeScreen() {
+export default function WelcomeScreen({ navigation }) {
 	return (
 		<ImageBackground
 			source={require("../assets/background.jpg")}
@@ -15,8 +15,16 @@ export default function WelcomeScreen() {
 				<Text style={styles.tagline}> sell what you don't need</Text>
 			</View>
 
-			<Btn title={"login"} color={colors.primary} />
-			<Btn title={"Sign up"} color={colors.secondary} />
+			<Btn
+				title={"login"}
+				color={colors.primary}
+				onPress={() => navigation.navigate("Login")}
+			/>
+			<Btn
+				title={"Sign up"}
+				color={colors.secondary}
+				onPress={() => navigation.navigate("Register")}
+			/>
 		</ImageBackground>
 	);
 }
