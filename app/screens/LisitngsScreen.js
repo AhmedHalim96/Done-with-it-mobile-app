@@ -1,5 +1,6 @@
 import React from "react";
 import { FlatList, StyleSheet, Text, View } from "react-native";
+import { TouchableWithoutFeedback } from "react-native-gesture-handler";
 import Card from "../components/Card";
 
 import Screen from "../components/Screen";
@@ -20,7 +21,7 @@ const listings = [
 	},
 ];
 
-const LisitngsScreen = () => {
+const LisitngsScreen = ({ navigation }) => {
 	return (
 		<Screen style={styles.screen}>
 			<FlatList
@@ -31,6 +32,7 @@ const LisitngsScreen = () => {
 						title={item.title}
 						image={item.image}
 						subtitle={"$" + item.price}
+						onPress={() => navigation.navigate("ListingDetails", { item })}
 					/>
 				)}
 			/>
