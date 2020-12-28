@@ -2,6 +2,7 @@ import React from "react";
 import { View, Text, Image, StyleSheet, ImageBackground } from "react-native";
 import Btn from "../components/Btn";
 import colors from "../config/colors";
+import routes from "../navigation/routes";
 
 export default function WelcomeScreen({ navigation }) {
 	return (
@@ -18,12 +19,12 @@ export default function WelcomeScreen({ navigation }) {
 			<Btn
 				title={"login"}
 				color={colors.primary}
-				onPress={() => navigation.navigate("Login")}
+				onPress={() => navigation.navigate(routes.LOGIN)}
 			/>
 			<Btn
 				title={"Sign up"}
 				color={colors.secondary}
-				onPress={() => navigation.navigate("Register")}
+				onPress={() => navigation.navigate(routes.REGISTER)}
 			/>
 		</ImageBackground>
 	);
