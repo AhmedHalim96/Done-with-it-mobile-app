@@ -1,37 +1,43 @@
-import React from "react";
-import { FlatList, StyleSheet, Text, View } from "react-native";
-import { TouchableWithoutFeedback } from "react-native-gesture-handler";
-import Card from "../components/Card";
+import React, { useEffect, useState } from "react";
+import { FlatList, StyleSheet } from "react-native";
+import listingsApi from "../api/listings";
+import AppActivityIndicator from "../components/ActivityIndicator";
+// import ActivityIndicator from "../components/ActivityIndicator";
+import AppText from "../components/AppText";
+import Btn from "../components/Btn";
 
+import Card from "../components/Card";
 import Screen from "../components/Screen";
 import colors from "../config/colors";
+import useApi from "../hooks/useApi";
 import routes from "../navigation/routes";
 
-const listings = [
-	{
-		id: 1,
-		title: "Jacket",
-		price: 100,
-		image: require("../assets/jacket.jpg"),
-	},
-	{
-		id: 2,
-		title: "Chair",
-		price: 1000,
-		image: require("../assets/chair.jpg"),
-	},
-];
-
 const LisitngsScreen = ({ navigation }) => {
+	const { data: listings, error, loading, request: loadListings } = useApi(
+		listingsApi.getListings
+	);
+
+	useEffect(() => {
+		loadListings();
+	}, []);
+
 	return (
 		<Screen style={styles.screen}>
+			{error && (
+				<>
+					<AppText>Couldn't connect to the interweb!</AppText>
+					<Btn title="retry" onPress={loadListings} />
+				</>
+			)}
+
+			<AppActivityIndicator visible={loading} />
 			<FlatList
 				data={listings}
 				keyExtractor={listing => listing.id.toString()}
 				renderItem={({ item }) => (
 					<Card
 						title={item.title}
-						image={item.image}
+						imageUrl={item.images[0].url}
 						subtitle={"$" + item.price}
 						onPress={() =>
 							navigation.navigate(routes.LISTINGS_DETAILS, { item })
