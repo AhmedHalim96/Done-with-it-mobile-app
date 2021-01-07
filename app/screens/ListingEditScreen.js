@@ -1,17 +1,20 @@
 import React, { useEffect, useState } from "react";
 import { StyleSheet, Text, View } from "react-native";
+import * as Yup from "yup";
+
 import {
 	AppForm,
 	AppFormField,
 	SubmitButton,
 	AppFormPicker,
 } from "../components/forms";
-
-import * as Yup from "yup";
 import Screen from "../components/Screen";
 import CategoryPickerItem from "../components/CategoryPickerItem";
 import AppFormImagePicker from "../components/forms/AppFormImagePicker";
 import useLocation from "../hooks/useLocation";
+import useApi from "../hooks/useApi";
+import listingsApi from "../api/listings";
+import UploadScreen from "./UploadScreen";
 
 const valdiationSchema = Yup.object().shape({
 	title: Yup.string().required().min(1).label("Title"),
@@ -43,9 +46,36 @@ const cats = [
 ];
 
 const ListingEditScreen = () => {
-	useLocation();
+	const location = useLocation();
+	const [uploadModalVisible, setUploadModalVisible] = useState(false);
+	const [progress, setProgress] = useState(0);
+
+	const handleSubmit = async (listing, { resetForm }) => {
+		setProgress(0);
+		setUploadModalVisible(true);
+		const res = await listingsApi.addListings(
+			{
+				...listing,
+				location,
+			},
+			progress => setProgress(progress)
+		);
+
+		if (!res.ok) {
+			setUploadModalVisible(false);
+			return alert("Somthing wrong happend!! ha ha");
+		}
+
+		resetForm();
+	};
+
 	return (
 		<Screen style={styles.container}>
+			<UploadScreen
+				onDone={() => setUploadModalVisible(false)}
+				progress={progress}
+				visible={uploadModalVisible}
+			/>
 			<AppForm
 				initialValues={{
 					title: "",
@@ -54,7 +84,7 @@ const ListingEditScreen = () => {
 					description: "",
 					images: [],
 				}}
-				onSubmit={values => console.log(values)}
+				onSubmit={handleSubmit}
 				valdiationSchema={valdiationSchema}
 			>
 				<AppFormImagePicker name="images" />

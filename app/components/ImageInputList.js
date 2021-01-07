@@ -13,12 +13,12 @@ const ImageInputList = ({ imageUris = [], onRemoveImage, onAddImage }) => {
 				onContentSizeChange={() => scrollView.current.scrollToEnd()}
 			>
 				<View style={styles.container}>
-					{imageUris.map(uri => (
+					{imageUris.map((uri, index) => (
 						<View style={{ marginRight: 5 }}>
 							<ImageInput
 								imageUri={uri}
 								onChangeImage={() => onRemoveImage(uri)}
-								key={uri + Math.random()}
+								key={toString(index)}
 							/>
 						</View>
 					))}

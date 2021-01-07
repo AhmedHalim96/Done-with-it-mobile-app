@@ -1,11 +1,10 @@
 import React, { useEffect, useState } from "react";
 import { FlatList, StyleSheet } from "react-native";
+
 import listingsApi from "../api/listings";
 import AppActivityIndicator from "../components/ActivityIndicator";
-// import ActivityIndicator from "../components/ActivityIndicator";
 import AppText from "../components/AppText";
 import Btn from "../components/Btn";
-
 import Card from "../components/Card";
 import Screen from "../components/Screen";
 import colors from "../config/colors";
