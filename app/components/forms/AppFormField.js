@@ -8,6 +8,8 @@ import ErrorMssage from "./ErrorMssage";
 const AppFormField = ({ name, width, ...otherProps }) => {
 	const {
 		setFieldTouched,
+		setFieldValue,
+		values,
 		handleChange,
 		errors,
 		touched,
@@ -16,8 +18,9 @@ const AppFormField = ({ name, width, ...otherProps }) => {
 		<>
 			<AppTextInput
 				onBlur={() => setFieldTouched(name)}
-				onChangeText={handleChange(name)}
+				onChangeText={text => setFieldValue(name, text)}
 				placeholderTextColor={colors.medium}
+				value={values[name]}
 				width={width}
 				{...otherProps}
 			/>
