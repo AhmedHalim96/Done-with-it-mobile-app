@@ -1,5 +1,7 @@
 // import { StatusBar } from "expo-status-bar";
 import React, { useEffect, useState } from "react";
+import NetInfo, { useNetInfo } from "@react-native-community/netinfo";
+import AsyncStorage from "@react-native-async-storage/async-storage";
 import {
 	StyleSheet,
 	Text,
@@ -21,6 +23,8 @@ import {
 import { MaterialCommunityIcons } from "@expo/vector-icons";
 import * as ImagePicker from "expo-image-picker";
 import * as Permissions from "expo-permissions";
+import { createStackNavigator } from "@react-navigation/stack";
+import { createBottomTabNavigator } from "@react-navigation/bottom-tabs";
 
 import ViewImageScreen from "./app/screens/ViewImageScreen";
 import WelcomeScreen from "./app/screens/WelcomeScreen";
@@ -43,7 +47,21 @@ import ListingEditScreen from "./app/screens/ListingEditScreen";
 import { TouchableWithoutFeedback } from "react-native-gesture-handler";
 import ImageInput from "./app/components/ImageInput";
 import ImageInputList from "./app/components/ImageInputList";
+import { NavigationContainer, useNavigation } from "@react-navigation/native";
+import AuthNavigator from "./app/navigation/AuthNavigator";
+import navigationTheme from "./app/navigation/navigationTheme";
+import AppNavigator from "./app/navigation/AppNavigator";
+import OfflineNoticeBar from "./app/components/OfflineNoticeBar";
 
 export default function App() {
-	return <ListingEditScreen />;
+	const netInfo = useNetInfo();
+
+	return (
+		<>
+			<OfflineNoticeBar />
+			<NavigationContainer theme={navigationTheme}>
+				<AppNavigator />
+			</NavigationContainer>
+		</>
+	);
 }
