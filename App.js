@@ -16,6 +16,7 @@ import {
 	Image,
 	ViewBase,
 } from "react-native";
+import { AppLoading } from "expo";
 import {
 	useDimensions,
 	useDeviceOrientation,
@@ -52,16 +53,32 @@ import AuthNavigator from "./app/navigation/AuthNavigator";
 import navigationTheme from "./app/navigation/navigationTheme";
 import AppNavigator from "./app/navigation/AppNavigator";
 import OfflineNoticeBar from "./app/components/OfflineNoticeBar";
+import AuthContext from "./app/auth/context";
+import authStorage from "./app/auth/storage";
+import jwtDecode from "jwt-decode";
 
 export default function App() {
-	const netInfo = useNetInfo();
+	const [user, setUser] = useState();
+	const [isReady, setIsReady] = useState(false);
+	// const netInfo = useNetInfo();
+
+	const restoreUser = async () => {
+		const user = await authStorage.getUser();
+		if (user) setUser(user);
+	};
+
+	if (!isReady) {
+		return (
+			<AppLoading startAsync={restoreUser} onFinish={() => setIsReady(true)} />
+		);
+	}
 
 	return (
-		<>
+		<AuthContext.Provider value={{ user, setUser }}>
 			<OfflineNoticeBar />
 			<NavigationContainer theme={navigationTheme}>
-				<AppNavigator />
+				{user ? <AppNavigator /> : <AuthNavigator />}
 			</NavigationContainer>
-		</>
+		</AuthContext.Provider>
 	);
 }

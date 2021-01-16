@@ -1,9 +1,10 @@
 import React from "react";
+import { useState } from "react";
 import { Image, StyleSheet } from "react-native";
 import * as Yup from "yup";
+import authApi from "../api/auth";
 import { AppForm, AppFormField, SubmitButton } from "../components/forms";
 import Screen from "../components/Screen";
-import colors from "../config/colors";
 
 const valdiationSchema = Yup.object().shape({
 	email: Yup.string().email().label("Email").required(),
@@ -15,13 +16,21 @@ const valdiationSchema = Yup.object().shape({
 });
 
 const RegisterScreen = () => {
+	useState;
+	const handleRegister = async values => {
+		const res = await authApi.register(
+			values.name,
+			values.email,
+			values.password
+		);
+	};
 	return (
 		<Screen style={styles.container}>
 			<Image style={styles.logo} source={require("../assets/logo-red.png")} />
 
 			<AppForm
 				initialValues={{ email: "", password: "", confirmPassword: "" }}
-				onSubmit={values => console.log(values)}
+				onSubmit={handleRegister}
 				valdiationSchema={valdiationSchema}
 			>
 				<AppFormField
