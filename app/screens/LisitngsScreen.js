@@ -21,30 +21,32 @@ const LisitngsScreen = ({ navigation }) => {
 	}, []);
 
 	return (
-		<Screen style={styles.screen}>
-			{error && (
-				<>
-					<AppText>Couldn't connect to the interweb!</AppText>
-					<Btn title="retry" onPress={loadListings} />
-				</>
-			)}
-
+		<>
 			<AppActivityIndicator visible={loading} />
-			<FlatList
-				data={listings}
-				keyExtractor={listing => listing.id.toString()}
-				renderItem={({ item }) => (
-					<Card
-						title={item.title}
-						imageUrl={item.images[0].url}
-						subtitle={"$" + item.price}
-						onPress={() =>
-							navigation.navigate(routes.LISTINGS_DETAILS, { item })
-						}
-					/>
+			<Screen style={styles.screen}>
+				{error && (
+					<>
+						<AppText>Couldn't connect to the interweb!</AppText>
+						<Btn title="retry" onPress={loadListings} />
+					</>
 				)}
-			/>
-		</Screen>
+
+				<FlatList
+					data={listings}
+					keyExtractor={listing => listing.id.toString()}
+					renderItem={({ item }) => (
+						<Card
+							title={item.title}
+							imageUrl={item.images[0].url}
+							subtitle={"$" + item.price}
+							onPress={() =>
+								navigation.navigate(routes.LISTINGS_DETAILS, { item })
+							}
+						/>
+					)}
+				/>
+			</Screen>
+		</>
 	);
 };
 
