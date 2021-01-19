@@ -76,7 +76,7 @@ export default function App() {
 	return (
 		<AuthContext.Provider value={{ user, setUser }}>
 			<OfflineNoticeBar />
-			<NavigationContainer theme={navigationTheme}>
+			<NavigationContainer ref={navigationRef} theme={navigationTheme}>
 				{user ? <AppNavigator /> : <AuthNavigator />}
 			</NavigationContainer>
 		</AuthContext.Provider>
