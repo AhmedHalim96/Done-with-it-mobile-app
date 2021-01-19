@@ -1,28 +1,31 @@
 {
 	"expo": {
-		"name": "DoneWithIt",
-		"slug": "DoneWithIt",
-		"version": "1.0.0",
-		"orientation": "portrait",
+		"android": {
+			"adaptiveIcon": {
+				"backgroundColor": "#FFFFFF",
+				"foregroundImage": "./app/assets/adaptive-icon.png"
+			}
+		},
+		"assetBundlePatterns": ["**/*"],
 		"icon": "./app/assets/icon.png",
+		"ios": {
+			"supportsTablet": true
+		},
+		"name": "DoneWithIt",
+		"notification": {
+			"iosDisplayInForeground": true
+		},
+		"orientation": "portrait",
+		"slug": "DoneWithIt",
 		"splash": {
+			"backgroundColor": "#e63c4b",
 			"image": "./app/assets/splash.png",
-			"resizeMode": "cover",
-			"backgroundColor": "#e63c4b"
+			"resizeMode": "cover"
 		},
 		"updates": {
 			"fallbackToCacheTimeout": 0
 		},
-		"assetBundlePatterns": ["**/*"],
-		"ios": {
-			"supportsTablet": true
-		},
-		"android": {
-			"adaptiveIcon": {
-				"foregroundImage": "./app/assets/adaptive-icon.png",
-				"backgroundColor": "#FFFFFF"
-			}
-		},
+		"version": "1.0.0",
 		"web": {
 			"favicon": "./app/assets/favicon.png"
 		}
