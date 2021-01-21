@@ -1,11 +1,5 @@
 {
 	"expo": {
-		"android": {
-			"adaptiveIcon": {
-				"backgroundColor": "#FFFFFF",
-				"foregroundImage": "./app/assets/adaptive-icon.png"
-			}
-		},
 		"assetBundlePatterns": ["**/*"],
 		"icon": "./app/assets/icon.png",
 		"ios": {
@@ -25,9 +19,6 @@
 		"updates": {
 			"fallbackToCacheTimeout": 0
 		},
-		"version": "1.0.0",
-		"web": {
-			"favicon": "./app/assets/favicon.png"
-		}
+		"version": "1.0.0"
 	}
 }
