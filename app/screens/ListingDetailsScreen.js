@@ -1,15 +1,20 @@
+import { Ionicons } from "@expo/vector-icons";
 import React from "react";
-import { StyleSheet, View } from "react-native";
+import { KeyboardAvoidingView, Platform, StyleSheet, View } from "react-native";
 import { Image } from "react-native-expo-image-cache";
 
 import AppText from "../components/AppText";
+import ContactSellerForm from "../components/ContactSellerForm";
 import ListItem from "../components/lists/ListItem";
 import colors from "../config/colors";
 
 const ListingDetailsScreen = ({ route }) => {
 	const listing = route.params.item;
 	return (
-		<>
+		<KeyboardAvoidingView
+			behavior="position"
+			keyboardVerticalOffset={Platform.OS === "ios" ? 0 : 100}
+		>
 			<View style={styles.container}>
 				<Image
 					uri={listing.images[0].url}
@@ -27,7 +32,8 @@ const ListingDetailsScreen = ({ route }) => {
 				subtitle={"1 listing"}
 				image={require("../assets/jacket.jpg")}
 			/>
-		</>
+			<ContactSellerForm listing={listing} />
+		</KeyboardAvoidingView>
 	);
 };
 
